@@ -13,8 +13,8 @@ var escapedChars = {
 
 var A_CODE = 'a'.charCodeAt();
 
-var leaf_key = '____jsonSourceMapLeafNode';
-exports.leaf_key = leaf_key;
+var loc_key = '____jsonSourceMapLocData';
+exports.loc_key = loc_key;
 
 exports.parse = function (source, _, options) {
   var pointers = {};
@@ -211,7 +211,7 @@ exports.parse = function (source, _, options) {
 
   function mapLoc(keyList, prop, loc) {
     let item = pointers;
-    for (let k of keyList.concat([leaf_key])) {
+    for (let k of keyList.concat([loc_key])) {
       if (item[k] === undefined)
         item[k] = {};
       item = item[k];
@@ -428,7 +428,7 @@ exports.stringify = function (data, _, options) {
 
   function map(keyList, prop) {
     let item = pointers;
-    for (let k of keyList.concat([leaf_key])) {
+    for (let k of keyList.concat([loc_key])) {
       if (item[k] === undefined)
         item[k] = {};
       item = item[k];
